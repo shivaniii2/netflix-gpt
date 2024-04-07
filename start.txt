@@ -1,3 +1,23 @@
 created a react app using command npx create-react-app netflix-gpt
 Now configuring tailwind.css in my project.
 Remember that if you want to position an absolute element to the center of its parent/ containing block use top:50% left:50% and transform: translate(-50%, -50%);
+Routing
+Header 
+Login 
+sign in/sign up form
+validation 
+useRef hook : In React, the useRef hook is used to create a mutable reference that persists across re-renders of the component. It's commonly used to access or interact with DOM elements directly, as well as to persist values between renders without causing re-renders. 
+Actually we can always have those state variables to have access to the values present in our input boxes but useRef hook provides the shortcut to get access to the values present in those input fields.
+
+
+For Authentication 
+Firebase :
+ It offers various tools and services to help developers build high-quality apps quickly, with features such as authentication, real-time database, cloud storage, hosting, analytics, and more. Firebase provides a wide range of backend services that can be integrated into your app without requiring you to manage infrastructure or write complex backend code.
+ After creating a new project in the firebase and then ebnabling email/password authentication there , we need to deploy our app to firebase
+ 1. https://console.firebase.google.com/u/0/project/netflix-gpt-590fe/overview
+ I was stuck in the third step of firebase CLI installation
+ so tried npm install -g firebase-tools --verbose
+ he --verbose flag is used with npm commands to increase the verbosity of the output. When you use this flag, npm provides more detailed information about the actions it's taking during the installation process, which can be helpful for troubleshooting issues.
+
+ 
+
