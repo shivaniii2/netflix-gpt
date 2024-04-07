@@ -1,0 +1,2 @@
+created a react app using command npx create-react-app netflix-gpt
+Now configuring tailwind.css in my project.
