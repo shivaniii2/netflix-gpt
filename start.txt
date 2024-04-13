@@ -13,11 +13,99 @@ Actually we can always have those state variables to have access to the values p
 For Authentication 
 Firebase :
  It offers various tools and services to help developers build high-quality apps quickly, with features such as authentication, real-time database, cloud storage, hosting, analytics, and more. Firebase provides a wide range of backend services that can be integrated into your app without requiring you to manage infrastructure or write complex backend code.
- After creating a new project in the firebase and then ebnabling email/password authentication there , we need to deploy our app to firebase
- 1. https://console.firebase.google.com/u/0/project/netflix-gpt-590fe/overview
- I was stuck in the third step of firebase CLI installation
- so tried npm install -g firebase-tools --verbose
- he --verbose flag is used with npm commands to increase the verbosity of the output. When you use this flag, npm provides more detailed information about the actions it's taking during the installation process, which can be helpful for troubleshooting issues.
-
+ After creating a new project in the firebase and then ebnabling email/password authentication there , we need to deploy our app to firebase.
  
-
+ 
+ I have successfully deployed my project to firebase 
+ production app url : https://gpt-net.web.app/
+ 
+ steps I followed 
+ created a project on firebase.
+ copy pasted the configuration file it gave me to the utils/firebase.js
+ installed firebase
+ installed firebase-tools
+ login firebase using npx firebase login
+ npx firebase init
+ check marked hosting configuration and gave build as a public directory
+ initialised successfully
+ run build as our production ready files are there .
+  npx firebase deploy : Got Hosting URL: https://gpt-net.web.app where my app was hosted and wuhuu my app is on production
+  
+  Now we are again on local as we will deploy our app to the production/firebase at the end (once the entire project is done).
+  
+  let us create a new user with email and password (sign up logic) - documentation refered :https://firebase.google.com/docs/auth/web/password-auth#create_a_password-based_account
+  
+  I was encountering an "Error updating Email/Password" message while attempting to update email/password in the Firebase Authentication console when i was trying to do the same with my organisation;s firebase account as there could be permissions issue so switched to gmail account and successfully signed up.
+  
+  
+  After signing up you can see the  signed up users in your users section in authentication module in firebase.
+  
+  
+  Let us do the sign in logic too
+  https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
+  creds : HiMickey@123 and chikusharma2@gmail.com
+  
+  As soon as you sign in the user object has this accessToken thing:)
+  
+  Let us now put all the data in the redux store that we get from sign in api call as this data will be used by us again and again by all the components.
+  
+  
+  now as we have to dispatch an action on sign in and also on sign up and also on sign out so instead of all these dispatch actions you can directly go for one  auth state change listner given to us by firebase itself - https://firebase.google.com/docs/auth/web/manage-users#get_the_currently_signed-in_user
+  The callback inside it will be called every time a user signin or sign up or sign out so you can dispatch actions for storing user info in your redux store at one place only . 
+  Let use write this listner on the root level i.e Body component
+  
+  
+  you know that the react router dom gives us this <Link> component and when ever we rap a dom element in it , when we click on it , the "to" attrib comes in play similarly there is a hook .
+  useNavigate is a hook provided by React Router that allows you to navigate programmatically within your application. It returns a navigate function, which you can then call to navigate to different paths in your application. we are using it to navigate to browse route as soon as the user signs in.
+  
+  
+  Let us also have a sign out button.To sign out a user, call signOut:again an API given by firebase in the same documentation as sign in and sign out.
+  
+ As our displayname is null initially we have decided to dispatch action to update values in the store not just on auth change event but also while we sign up 
+  As far as I can understand , as create an account with username and password has nothing to do with the name while signing up so , we are going to amke another API call(updateProfile) while signing up is done and we will dispatch addUser action again with all latest values that we get from auth.currentuser
+  This guy said that displayname is not avaiable when you sign in/ sign up , it is avaiable right after sign up 🙄
+  
+  
+  update the user profile - https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile
+  
+  
+  
+  bug : as we use /browse manually in the url it is still taking me inside the app so what is the use of all the authentication you just did . Actually all the navigation should be decided on the fact that if user is logged in or not and that is something we can get to know through onAuthStateChanged event given  by firebase but as we know that the body component can not use useNavigate() - error "useNavigate() may be used only in the context of a <Router> component." -This error message suggests that you are trying to use the useNavigate() function outside the context of a <Router> component. so , the children can use this useNavigate and as the header is the component that is common while the user is login or logged out so moving the event listner to the header .
+  
+  
+  
+  
+  Another thing we see that if the header component is loading , everytime the useEffect runs and will trigger onAuthStateChanged and we want to make sure that if our component unmounts then we should unsubscribe to onAuthStateChanged. so as per firebase documentation this onAuthStateChanged returns an unsubscribe function . we will call this function in the return section of useEffect as we know that is where we can write the entire logic of clean up/ component unmount
+  
+  
+  moved all the hardcoded things to constants.js
+  
+  sign up to tmdb => get your bearer and make an API call  => create another slice => add data extracted from API call to the store => create a custom hook for all the api call logic to make the code in browse look a little clean .
+  Now let us start building the UI - firstContainer AND secondContainer.
+  firstContainer has mainmovie with videoTitle and videoBackground
+  secondContainer has n number of rows of movies where each row has n number of movie cards 
+  
+  so create two components : firstContainer and secondContainer 
+  then inside firstContainer have two more components that is videoTitle and videoBackground
+  
+  create UI for videoTitle and for videoBackground go to tmdb again go to videos and get the API for video
+  
+  
+  To get that  videoBackground video  you can again use an API from tmdb . this is a GET request that takes movie id(I am taking the first one from all movies) in the reqiested URL and returns all the videos related to that movie like trailer teaser etc.
+  
+  
+  After you get all the videos you have to perform filter in order to be with videos that are of type "Trailer" then as trailer type were 2 so I chose the first one .
+  Now you are given with a " key" in the result which is a youtube key .
+  put that data of trailer video also in the redux store and then access it in the videoBg component using useSelector
+  
+  
+  Use the key from the redux store to dynamically set the you tube key in the iframe part of the videobg component.
+  
+  
+  during css setting for video there is this aspect ratio  16:9. Learn about it more .
+  
+  
+  
+  
+  
+  
