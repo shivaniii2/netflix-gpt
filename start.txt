@@ -105,6 +105,35 @@ Firebase :
   during css setting for video there is this aspect ratio  16:9. Learn about it more .
   
   
+  Now you will have a secondary container that will have a movieList component and this movieList component has a number of movieCards.
+  we also fetched data for upcoming and popular movies using custom hooks and also placed the fetched data in the movie store and then access it in the secondary container
+  
+  
+  
+  
+  Let us now create a GPT search button in the header.
+  let us have a component gptSearch and this component will only be rendered if we click on GPT search button.
+  let us take a variable/state as we are keeping our entire data in this application in the redux store.
+  this state if true only then show that GPTsearch component otherwise initially keeping it false .
+  Let us create a different slice named gptSlice for this new logical separation.
+  
+  gpt Search component has two other components : search bar with a search button and a recommended movies component.
+  
+  Let us make out gpt search page multilingual supportive . 
+  
+  we have created a dropdown in header component to slect out of multiple languages .
+  The <select> element creates the dropdown menu, and each <option> element within it represents an option in the menu.
+  The value attribute of each <option> element represents the value that will be sent to the server when the form is submitted.
+  The JavaScript code listens for the change event on the <select> element. When the selection changes, it retrieves the value of the selected option using dropdown.selectedIndex and performs the desired action.
+  
+  
+  Now after creating a dropdown to select languages , let us create a new slice to keep app data there like theme or prefered language etc whatever language is selected from the dropdown that language will be there in the redux store.
+  
+  Now let us integrate GPT api
+  
+  
+  
+  
   
   
   

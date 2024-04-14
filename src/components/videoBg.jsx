@@ -6,7 +6,7 @@ export const VideoBg = ({movieId}) => {
   const trailerVideo = useSelector((store) => store.movie?.trailerVideo)
   useGetTrailer(movieId)
   return (
-    <div className="absolute">
+    <div className="absolute z-30">
       <iframe className="w-screen aspect-video"
         src={"https://www.youtube.com/embed/"+trailerVideo?.key + "?&autoplay=1&mute=1"}
         title="YouTube video player"
@@ -15,7 +15,6 @@ export const VideoBg = ({movieId}) => {
         referrerpolicy="strict-origin-when-cross-origin"
 
       ></iframe>
-      az
     </div>
   );
 };
