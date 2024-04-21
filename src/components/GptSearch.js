@@ -8,7 +8,7 @@ export const GptSearch = () => {
 <>
 
         <img alt=""
-          className="absolute"
+          className="fixed"
           src={BG_IMG}
         ></img>
   

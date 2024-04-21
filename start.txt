@@ -130,8 +130,15 @@ Firebase :
   Now after creating a dropdown to select languages , let us create a new slice to keep app data there like theme or prefered language etc whatever language is selected from the dropdown that language will be there in the redux store.
   
   Now let us integrate GPT api
+  Generate an apen ai secret key .
+  Now go to this document - https://www.npmjs.com/package/openai/v/4.8.0 - to see how we can use this open ai secret key to make api calls from a js file.
+  
+  I made an api call on click of search button in the gptsearchbar component but it gave me error that you are trying to make open ai call through frontend and your secret key can be attacked so used this dangerouslyAllowBrowser  where i was initiating new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
+  
+  Now after all the data in  the redux store let us build GptMovieSuggestion component using MovieList component we built earlier as it requires title and movies , here in this case title is the name of each movie suggested by gpt and movies are the searched tmdb movies corresponding to that name .
   
   
+The position: fixed; CSS property defines a positioning scheme where an element is removed from the normal document flow and is positioned relative to the viewport, always remaining in the same place regardless of scrolling.
   
   
   

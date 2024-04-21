@@ -7,12 +7,14 @@ export const OPTIONS = {
   method: "GET",
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NjcxN2IzZDFhODExNmE2ODgzZGQ0NTZiMGQ1MmVkNSIsInN1YiI6IjY2MTc2YWQzODEzODMxMDE3ZDc1NjhkZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QfpJCe8L860OO2hd187FeDVw56eOioOwR0B9xB7KicY",
+      "Bearer" + process.env.REACT_APP_TMDB_KEY,
     accept: "application/json",
   },
 };
 export const CDN_URL = "https://image.tmdb.org/t/p/w500/"
 
 export const SUPPORTED_LANGUAGES = [{identifier : "en" , name : "English"},{identifier : "hindi" , name : "Hindi"},{identifier : "french" , name : "French"}]
+
+export const OPEN_AIKEY =process.env.REACT_APP_OPEN_AI_KEY
 
 
